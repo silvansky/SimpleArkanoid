@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A348BD6015C7D1190072DF73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A348BD5F15C7D1190072DF73 /* UIKit.framework */; };
+		A348BD6215C7D1190072DF73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A348BD6115C7D1190072DF73 /* Foundation.framework */; };
+		A348BD6415C7D1190072DF73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A348BD6315C7D1190072DF73 /* CoreGraphics.framework */; };
+		A348BD6615C7D1190072DF73 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A348BD6515C7D1190072DF73 /* GLKit.framework */; };
+		A348BD6815C7D1190072DF73 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A348BD6715C7D1190072DF73 /* OpenGLES.framework */; };
+		A348BD6E15C7D1190072DF73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A348BD6C15C7D1190072DF73 /* InfoPlist.strings */; };
+		A348BD7015C7D1190072DF73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD6F15C7D1190072DF73 /* main.m */; };
+		A348BD7415C7D1190072DF73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD7315C7D1190072DF73 /* AppDelegate.m */; };
+		A348BD7615C7D1190072DF73 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A348BD7515C7D1190072DF73 /* Shader.fsh */; };
+		A348BD7815C7D1190072DF73 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = A348BD7715C7D1190072DF73 /* Shader.vsh */; };
+		A348BD7B15C7D1190072DF73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD7A15C7D1190072DF73 /* ViewController.m */; };
+		A348BD7E15C7D1190072DF73 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A348BD7C15C7D1190072DF73 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A348BD5B15C7D1190072DF73 /* SimpleArkanoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleArkanoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A348BD5F15C7D1190072DF73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A348BD6115C7D1190072DF73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A348BD6315C7D1190072DF73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A348BD6515C7D1190072DF73 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A348BD6715C7D1190072DF73 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A348BD6B15C7D1190072DF73 /* SimpleArkanoid-Info.plist */ = {isa = PBXFileReference; path = "SimpleArkanoid-Info.plist"; sourceTree = "<group>"; };
+		A348BD6D15C7D1190072DF73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A348BD6F15C7D1190072DF73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A348BD7115C7D1190072DF73 /* SimpleArkanoid-Prefix.pch */ = {isa = PBXFileReference; path = "SimpleArkanoid-Prefix.pch"; sourceTree = "<group>"; };
+		A348BD7215C7D1190072DF73 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		A348BD7315C7D1190072DF73 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A348BD7515C7D1190072DF73 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		A348BD7715C7D1190072DF73 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		A348BD7915C7D1190072DF73 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		A348BD7A15C7D1190072DF73 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A348BD7D15C7D1190072DF73 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A348BD5815C7D1190072DF73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A348BD6015C7D1190072DF73 /* UIKit.framework in Frameworks */,
+				A348BD6215C7D1190072DF73 /* Foundation.framework in Frameworks */,
+				A348BD6415C7D1190072DF73 /* CoreGraphics.framework in Frameworks */,
+				A348BD6615C7D1190072DF73 /* GLKit.framework in Frameworks */,
+				A348BD6815C7D1190072DF73 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A348BD5015C7D1190072DF73 = {
+			isa = PBXGroup;
+			children = (
+				A348BD6915C7D1190072DF73 /* SimpleArkanoid */,
+				A348BD5E15C7D1190072DF73 /* Frameworks */,
+				A348BD5C15C7D1190072DF73 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A348BD5C15C7D1190072DF73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A348BD5B15C7D1190072DF73 /* SimpleArkanoid.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A348BD5E15C7D1190072DF73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A348BD5F15C7D1190072DF73 /* UIKit.framework */,
+				A348BD6115C7D1190072DF73 /* Foundation.framework */,
+				A348BD6315C7D1190072DF73 /* CoreGraphics.framework */,
+				A348BD6515C7D1190072DF73 /* GLKit.framework */,
+				A348BD6715C7D1190072DF73 /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A348BD6915C7D1190072DF73 /* SimpleArkanoid */ = {
+			isa = PBXGroup;
+			children = (
+				A348BD7215C7D1190072DF73 /* AppDelegate.h */,
+				A348BD7315C7D1190072DF73 /* AppDelegate.m */,
+				A348BD7515C7D1190072DF73 /* Shader.fsh */,
+				A348BD7715C7D1190072DF73 /* Shader.vsh */,
+				A348BD7915C7D1190072DF73 /* ViewController.h */,
+				A348BD7A15C7D1190072DF73 /* ViewController.m */,
+				A348BD7C15C7D1190072DF73 /* ViewController.xib */,
+				A348BD6A15C7D1190072DF73 /* Supporting Files */,
+			);
+			path = SimpleArkanoid;
+			sourceTree = "<group>";
+		};
+		A348BD6A15C7D1190072DF73 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A348BD6B15C7D1190072DF73 /* SimpleArkanoid-Info.plist */,
+				A348BD6C15C7D1190072DF73 /* InfoPlist.strings */,
+				A348BD6F15C7D1190072DF73 /* main.m */,
+				A348BD7115C7D1190072DF73 /* SimpleArkanoid-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A348BD5A15C7D1190072DF73 /* SimpleArkanoid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A348BD8115C7D1190072DF73 /* Build configuration list for PBXNativeTarget "SimpleArkanoid" */;
+			buildPhases = (
+				A348BD5715C7D1190072DF73 /* Sources */,
+				A348BD5815C7D1190072DF73 /* Frameworks */,
+				A348BD5915C7D1190072DF73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleArkanoid;
+			productName = SimpleArkanoid;
+			productReference = A348BD5B15C7D1190072DF73 /* SimpleArkanoid.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A348BD5215C7D1190072DF73 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = A348BD5515C7D1190072DF73 /* Build configuration list for PBXProject "SimpleArkanoid" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A348BD5015C7D1190072DF73;
+			productRefGroup = A348BD5C15C7D1190072DF73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A348BD5A15C7D1190072DF73 /* SimpleArkanoid */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A348BD5915C7D1190072DF73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A348BD6E15C7D1190072DF73 /* InfoPlist.strings in Resources */,
+				A348BD7615C7D1190072DF73 /* Shader.fsh in Resources */,
+				A348BD7815C7D1190072DF73 /* Shader.vsh in Resources */,
+				A348BD7E15C7D1190072DF73 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A348BD5715C7D1190072DF73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A348BD7015C7D1190072DF73 /* main.m in Sources */,
+				A348BD7415C7D1190072DF73 /* AppDelegate.m in Sources */,
+				A348BD7B15C7D1190072DF73 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A348BD6C15C7D1190072DF73 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A348BD6D15C7D1190072DF73 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A348BD7C15C7D1190072DF73 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A348BD7D15C7D1190072DF73 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A348BD7F15C7D1190072DF73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A348BD8015C7D1190072DF73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A348BD8215C7D1190072DF73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleArkanoid/SimpleArkanoid-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "SimpleArkanoid/SimpleArkanoid-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A348BD8315C7D1190072DF73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleArkanoid/SimpleArkanoid-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "SimpleArkanoid/SimpleArkanoid-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A348BD5515C7D1190072DF73 /* Build configuration list for PBXProject "SimpleArkanoid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A348BD7F15C7D1190072DF73 /* Debug */,
+				A348BD8015C7D1190072DF73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A348BD8115C7D1190072DF73 /* Build configuration list for PBXNativeTarget "SimpleArkanoid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A348BD8215C7D1190072DF73 /* Debug */,
+				A348BD8315C7D1190072DF73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A348BD5215C7D1190072DF73 /* Project object */;
+}
