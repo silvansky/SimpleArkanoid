@@ -7,99 +7,58 @@
 //
 
 #import "ViewController.h"
+#import "GameSprite.h"
 
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+#import <QuartzCore/QuartzCore.h>
 
-// Uniform index.
-enum
+#define kGameStateNone 0
+#define kGameStateLose 1
+#define kGameStateWon  2
+
+@interface ViewController () 
 {
-    UNIFORM_MODELVIEWPROJECTION_MATRIX,
-    UNIFORM_NORMAL_MATRIX,
-    NUM_UNIFORMS
-};
-GLint uniforms[NUM_UNIFORMS];
-
-// Attribute index.
-enum
-{
-    ATTRIB_VERTEX,
-    ATTRIB_NORMAL,
-    NUM_ATTRIBUTES
-};
-
-GLfloat gCubeVertexData[216] = 
-{
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    0.5f, -0.5f, -0.5f,        1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,          1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    
-    0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-    
-    -0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-    
-    -0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-    
-    0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
-};
-
-@interface ViewController () {
-    GLuint _program;
-    
-    GLKMatrix4 _modelViewProjectionMatrix;
-    GLKMatrix3 _normalMatrix;
-    float _rotation;
-    
-    GLuint _vertexArray;
-    GLuint _vertexBuffer;
 }
+
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property (strong, nonatomic) GameSprite *playerBat;
+@property (strong, nonatomic) GameSprite *ball;
+@property (strong, nonatomic) GameSprite *background;
+@property (strong, nonatomic) GameSprite *menuDimmer;
+@property (strong, nonatomic) GameSprite *menuCaption;
+@property (strong, nonatomic) GameSprite *menuCaptionWon;
+@property (strong, nonatomic) GameSprite *menuCaptionLose;
+@property (strong, nonatomic) GameSprite *menuStartButton;
+@property (strong, nonatomic) NSMutableArray *bricks;
+@property (strong, nonatomic) GLKTextureInfo *bgTextureInfo;
+@property (assign) int gameState; // see kGameState...
+@property (assign) BOOL gameRunning;
 
 - (void)setupGL;
 - (void)tearDownGL;
 
-- (BOOL)loadShaders;
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
-- (BOOL)linkProgram:(GLuint)prog;
-- (BOOL)validateProgram:(GLuint)prog;
+- (void)loadBricks;
+
+- (void)startGame;
+- (void)endGameWithWin:(BOOL)win;
 @end
 
 @implementation ViewController
 
 @synthesize context = _context;
 @synthesize effect = _effect;
+@synthesize playerBat = _playerBat;
+@synthesize ball = _ball;
+@synthesize background = _background;
+@synthesize menuDimmer = _menuDimmer;
+@synthesize menuCaption = _menuCaption;
+@synthesize menuCaptionWon = _menuCaptionWon;
+@synthesize menuCaptionLose = _menuCaptionLose;
+@synthesize menuStartButton = _menuStartButton;
+@synthesize bgTextureInfo = _bgTextureInfo;
+@synthesize bricks = _bricks;
+@synthesize gameState = _gameState;
+@synthesize gameRunning = _gameRunning;
 
 - (void)viewDidLoad
 {
@@ -107,15 +66,89 @@ GLfloat gCubeVertexData[216] =
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 
-    if (!self.context) {
+    if (!self.context)
+	{
         NSLog(@"Failed to create ES context");
     }
-    
+
+	[self setupGL];
+	
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    
-    [self setupGL];
+	GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 320, 0, 480, -1024, 1024);
+
+	self.effect.transform.projectionMatrix = projectionMatrix;
+	
+	// initializing game state
+	self.gameRunning = NO;
+	self.gameState = kGameStateNone;
+
+	// initializing common sprites
+	self.playerBat = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"playerBat"] effect:self.effect];
+	self.playerBat.position = GLKVector2Make(160, 35);
+	self.ball = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"ball1"] effect:self.effect];
+	self.ball.position = GLKVector2Make(160, 80);
+	self.ball.rotationVelocity = 180.f;
+	self.background = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"bg"] effect:self.effect];
+	self.background.position = GLKVector2Make(160, 240);
+	// loading level bricks
+	[self loadBricks];
+	// menu sprites
+	self.menuDimmer = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"menuDimmer"] effect:self.effect];
+	self.menuDimmer.position = GLKVector2Make(160, 240);
+	self.menuStartButton = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"menuStartButton"] effect:self.effect];
+	self.menuStartButton.position = GLKVector2Make(160, 240);
+	self.menuCaption = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"menuCaption"] effect:self.effect];
+	self.menuCaption.position = GLKVector2Make(160, 340);
+	self.menuCaptionWon = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"menuCaptionWon"] effect:self.effect];
+	self.menuCaptionWon.position = GLKVector2Make(160, 340);
+	self.menuCaptionLose = [[GameSprite alloc] initWithImage:[UIImage imageNamed:@"menuCaptionLose"] effect:self.effect];
+	self.menuCaptionLose.position = GLKVector2Make(160, 340);
+
+	// gestures
+	UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureFrom:)];                                                               
+	[self.view addGestureRecognizer:panRecognizer];
+	[self.view addGestureRecognizer:tapRecognizer];
+}
+
+- (void)startGame
+{
+	self.gameRunning = YES;
+	self.gameState = kGameStateNone;
+	[self loadBricks];
+	self.ball.position = GLKVector2Make(160, 80);
+	self.ball.moveVelocity = GLKVector2Make(120, 240);
+}
+
+- (void)endGameWithWin:(BOOL)win
+{
+	self.gameRunning = NO;
+	self.gameState = win ? kGameStateWon : kGameStateLose;
+}
+
+- (void)handleTapGestureFrom:(UITapGestureRecognizer *)recognizer
+{
+    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+	if (self.gameRunning)
+	{
+		GLKVector2 target = GLKVector2Make(touchLocation.x, self.playerBat.position.y);
+		self.playerBat.position = target;
+	}
+	else if (CGRectContainsPoint(self.menuStartButton.boundingRect, touchLocation))
+	{
+		[self startGame];
+	}
+}
+
+- (void)handlePanGesture:(UIGestureRecognizer *)gestureRecognizer
+{
+	CGPoint touchLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
+    if (self.gameRunning)
+	{
+		GLKVector2 target = GLKVector2Make(touchLocation.x, self.playerBat.position.y);
+		self.playerBat.position = target;
+	}
 }
 
 - (void)viewDidUnload
@@ -133,262 +166,180 @@ GLfloat gCubeVertexData[216] =
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc. that aren't in use.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)setupGL
 {
     [EAGLContext setCurrentContext:self.context];
-    
-    [self loadShaders];
-    
     self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
-    
-    glEnable(GL_DEPTH_TEST);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
-    
-    glBindVertexArrayOES(0);
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
-    
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
-    
     self.effect = nil;
-    
-    if (_program) {
-        glDeleteProgram(_program);
-        _program = 0;
-    }
+}
+
+- (void)loadBricks
+{
+	// assuming 6x6 brick matrix, each brick is 50x10
+	NSError *error;
+	[NSBundle mainBundle] ;
+	NSStringEncoding encoding;
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"level1" ofType:@"txt"];
+	NSString *levelData = [NSString stringWithContentsOfFile:filePath usedEncoding:&encoding error:&error];
+	if (levelData == nil)
+	{
+		NSLog(@"Error loading level data! %@", error);
+		return;
+	}
+	levelData = [[levelData componentsSeparatedByCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString: @""];
+	if ([levelData length] < (6*6))
+	{
+		NSLog(@"Level data has incorrect size!");
+		return;
+	}
+	NSMutableArray *loadedBricks = [NSMutableArray array];
+	UIImage *brickImage = [UIImage imageNamed:@"brick1"];
+
+	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], GLKTextureLoaderOriginBottomLeft, nil];
+	GLKTextureInfo *textureInfo = [GLKTextureLoader textureWithCGImage:brickImage.CGImage options:options error:&error];
+	if (textureInfo == nil)
+	{
+		NSLog(@"Error loading image: %@", [error localizedDescription]);
+		return;
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			if ([levelData characterAtIndex:j + i * 6] == '1')
+			{
+				GameSprite *brickSprite = [[GameSprite alloc] initWithTexture:textureInfo effect:self.effect];
+				brickSprite.position = GLKVector2Make((j + 1) * 50.f - 15.f, 480.f - (i + 1) * 10.f - 15.f);
+				[loadedBricks addObject:brickSprite];
+			}
+		}
+	}
+	self.bricks = loadedBricks;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
 {
-    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
-    
-    self.effect.transform.projectionMatrix = projectionMatrix;
-    
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
-    
-    // Compute the model view matrix for the object rendered with GLKit
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
-    
-    // Compute the model view matrix for the object rendered with ES2
-    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
-    
-    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
-    
-    _rotation += self.timeSinceLastUpdate * 0.5f;
+	if (!self.gameRunning)
+		return;
+	// checking for broken bricks
+	NSMutableArray *brokenBricks = [NSMutableArray array];
+	GLKVector2 initialBallVelocity = self.ball.moveVelocity;
+	for (GameSprite *brick in self.bricks)
+	{
+        if (CGRectIntersectsRect(self.ball.boundingRect, brick.boundingRect))
+		{
+			[brokenBricks addObject: brick];
+			if ((self.ball.position.y < brick.position.y - brick.contentSize.height / 2) || (self.ball.position.y > brick.position.y + brick.contentSize.height / 2))
+			{
+				self.ball.moveVelocity = GLKVector2Make(initialBallVelocity.x, -initialBallVelocity.y);
+			}
+			else
+			{
+				self.ball.moveVelocity = GLKVector2Make(-initialBallVelocity.x, initialBallVelocity.y);
+			}
+		}
+    }
+	
+	// removing them
+	for (GameSprite *brick in brokenBricks)
+	{
+		[self.bricks removeObject:brick];
+	}
+	
+	if (self.bricks.count == 0)
+	{
+		[self endGameWithWin:YES];
+	}
+	
+	// checking for walls
+	// left
+	if (self.ball.boundingRect.origin.x <= 0)
+	{
+		self.ball.moveVelocity = GLKVector2Make(-self.ball.moveVelocity.x, self.ball.moveVelocity.y);
+		self.ball.position = GLKVector2Make(self.ball.position.x - self.ball.boundingRect.origin.x, self.ball.position.y);
+	}
+	// right
+	if (self.ball.boundingRect.origin.x + self.ball.boundingRect.size.width >= 320)
+	{
+		self.ball.moveVelocity = GLKVector2Make(-self.ball.moveVelocity.x, self.ball.moveVelocity.y);
+		self.ball.position = GLKVector2Make(self.ball.position.x - (self.ball.boundingRect.size.width + self.ball.boundingRect.origin.x - 320), self.ball.position.y);
+	}
+	// top
+	if (self.ball.boundingRect.origin.y + self.ball.boundingRect.size.height >= 480)
+	{
+		self.ball.moveVelocity = GLKVector2Make(self.ball.moveVelocity.x, -self.ball.moveVelocity.y);
+		self.ball.position = GLKVector2Make(self.ball.position.x, self.ball.position.y - (self.ball.boundingRect.origin.y + self.ball.boundingRect.size.height - 480));
+	}
+	// bottom (player lose)
+	if (self.ball.boundingRect.origin.y + self.ball.boundingRect.size.height <= 70)
+	{
+		[self endGameWithWin:NO];
+	}
+	
+	// player got it
+	if (CGRectIntersectsRect(self.ball.boundingRect, self.playerBat.boundingRect))
+	{
+		self.ball.moveVelocity = GLKVector2Make(self.ball.moveVelocity.x, -self.ball.moveVelocity.y);
+		self.ball.position = GLKVector2Make(self.ball.position.x, self.ball.position.y + (self.playerBat.boundingRect.origin.y + self.playerBat.boundingRect.size.height - self.ball.boundingRect.origin.y));
+	}
+	
+	// update alive sprites
+	[self.playerBat update:self.timeSinceLastUpdate];
+	[self.ball update:self.timeSinceLastUpdate];
+	for (GameSprite *brick in self.bricks)
+	{
+        [brick update:self.timeSinceLastUpdate];
+    }
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    glBindVertexArrayOES(_vertexArray);
-    
-    // Render the object with GLKit
-    [self.effect prepareToDraw];
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    // Render the object again with ES2
-    glUseProgram(_program);
-    
-    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-}
+    glClearColor(1.f, 1.f, 1.f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);    
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
 
-#pragma mark -  OpenGL ES 2 shader compilation
-
-- (BOOL)loadShaders
-{
-    GLuint vertShader, fragShader;
-    NSString *vertShaderPathname, *fragShaderPathname;
-    
-    // Create shader program.
-    _program = glCreateProgram();
-    
-    // Create and compile vertex shader.
-    vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
-    if (![self compileShader:&vertShader type:GL_VERTEX_SHADER file:vertShaderPathname]) {
-        NSLog(@"Failed to compile vertex shader");
-        return NO;
-    }
-    
-    // Create and compile fragment shader.
-    fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"];
-    if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:fragShaderPathname]) {
-        NSLog(@"Failed to compile fragment shader");
-        return NO;
-    }
-    
-    // Attach vertex shader to program.
-    glAttachShader(_program, vertShader);
-    
-    // Attach fragment shader to program.
-    glAttachShader(_program, fragShader);
-    
-    // Bind attribute locations.
-    // This needs to be done prior to linking.
-    glBindAttribLocation(_program, ATTRIB_VERTEX, "position");
-    glBindAttribLocation(_program, ATTRIB_NORMAL, "normal");
-    
-    // Link program.
-    if (![self linkProgram:_program]) {
-        NSLog(@"Failed to link program: %d", _program);
-        
-        if (vertShader) {
-            glDeleteShader(vertShader);
-            vertShader = 0;
-        }
-        if (fragShader) {
-            glDeleteShader(fragShader);
-            fragShader = 0;
-        }
-        if (_program) {
-            glDeleteProgram(_program);
-            _program = 0;
-        }
-        
-        return NO;
-    }
-    
-    // Get uniform locations.
-    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
-    
-    // Release vertex and fragment shaders.
-    if (vertShader) {
-        glDetachShader(_program, vertShader);
-        glDeleteShader(vertShader);
-    }
-    if (fragShader) {
-        glDetachShader(_program, fragShader);
-        glDeleteShader(fragShader);
-    }
-    
-    return YES;
-}
-
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
-{
-    GLint status;
-    const GLchar *source;
-    
-    source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
-    if (!source) {
-        NSLog(@"Failed to load vertex shader");
-        return NO;
-    }
-    
-    *shader = glCreateShader(type);
-    glShaderSource(*shader, 1, &source, NULL);
-    glCompileShader(*shader);
-    
-#if defined(DEBUG)
-    GLint logLength;
-    glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetShaderInfoLog(*shader, logLength, &logLength, log);
-        NSLog(@"Shader compile log:\n%s", log);
-        free(log);
-    }
-#endif
-    
-    glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
-    if (status == 0) {
-        glDeleteShader(*shader);
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (BOOL)linkProgram:(GLuint)prog
-{
-    GLint status;
-    glLinkProgram(prog);
-    
-#if defined(DEBUG)
-    GLint logLength;
-    glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetProgramInfoLog(prog, logLength, &logLength, log);
-        NSLog(@"Program link log:\n%s", log);
-        free(log);
-    }
-#endif
-    
-    glGetProgramiv(prog, GL_LINK_STATUS, &status);
-    if (status == 0) {
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (BOOL)validateProgram:(GLuint)prog
-{
-    GLint logLength, status;
-    
-    glValidateProgram(prog);
-    glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetProgramInfoLog(prog, logLength, &logLength, log);
-        NSLog(@"Program validate log:\n%s", log);
-        free(log);
-    }
-    
-    glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
-    if (status == 0) {
-        return NO;
-    }
-    
-    return YES;
+	[self.background render];
+    [self.playerBat render];
+	for (GameSprite *brick in self.bricks)
+	{
+		[brick render];
+	}
+	[self.ball render];
+	
+	if (!self.gameRunning)
+	{
+		[self.menuDimmer render];
+		[self.menuStartButton render];
+		switch (self.gameState)
+		{
+			case kGameStateWon:
+				[self.menuCaptionWon render];
+				break;
+			case kGameStateLose:
+				[self.menuCaptionLose render];
+				break;
+			case kGameStateNone:
+			default:
+				[self.menuCaption render];
+				break;
+		}
+	}
 }
 
 @end
