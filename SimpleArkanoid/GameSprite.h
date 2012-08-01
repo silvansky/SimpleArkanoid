@@ -1,14 +1,13 @@
 //
-//  Shader.fsh
+//  GameSprite.h
 //  SimpleArkanoid
 //
 //  Created by Valentine on 31.07.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-varying lowp vec4 colorVarying;
+#import <Foundation/Foundation.h>
 
-void main()
-{
-    gl_FragColor = colorVarying;
-}
+@interface GameSprite : NSObject
+
+@end
