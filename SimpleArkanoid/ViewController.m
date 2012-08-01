@@ -291,10 +291,14 @@
 		[self endGameWithWin:NO];
 	}
 	
-	// player got it
+	// player strikes!
 	if (CGRectIntersectsRect(self.ball.boundingRect, self.playerBat.boundingRect))
 	{
-		self.ball.moveVelocity = GLKVector2Make(self.ball.moveVelocity.x, -self.ball.moveVelocity.y);
+		float angleCoef = (self.ball.position.x - self.playerBat.position.x) / (self.playerBat.contentSize.width / 2);
+		float newAngle = 90.f - angleCoef * 80.f;
+		GLKVector2 ballDirection = GLKVector2Normalize(GLKVector2Make(1 / tanf(GLKMathDegreesToRadians(newAngle)), 1));
+		float ballSpeed = GLKVector2Length(self.ball.moveVelocity);
+		self.ball.moveVelocity = GLKVector2MultiplyScalar(ballDirection, ballSpeed);
 		self.ball.position = GLKVector2Make(self.ball.position.x, self.ball.position.y + (self.playerBat.boundingRect.origin.y + self.playerBat.boundingRect.size.height - self.ball.boundingRect.origin.y));
 	}
 	
