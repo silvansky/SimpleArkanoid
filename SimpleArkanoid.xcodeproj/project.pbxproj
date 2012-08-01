@@ -15,10 +15,22 @@
 		A348BD6E15C7D1190072DF73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A348BD6C15C7D1190072DF73 /* InfoPlist.strings */; };
 		A348BD7015C7D1190072DF73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD6F15C7D1190072DF73 /* main.m */; };
 		A348BD7415C7D1190072DF73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD7315C7D1190072DF73 /* AppDelegate.m */; };
-		A348BD7615C7D1190072DF73 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A348BD7515C7D1190072DF73 /* Shader.fsh */; };
-		A348BD7815C7D1190072DF73 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = A348BD7715C7D1190072DF73 /* Shader.vsh */; };
 		A348BD7B15C7D1190072DF73 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD7A15C7D1190072DF73 /* ViewController.m */; };
 		A348BD7E15C7D1190072DF73 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A348BD7C15C7D1190072DF73 /* ViewController.xib */; };
+		A348BD8515C7D1AE0072DF73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A348BD8415C7D1AE0072DF73 /* QuartzCore.framework */; };
+		A348BD8815C7E1230072DF73 /* GameSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A348BD8715C7E1230072DF73 /* GameSprite.m */; };
+		A348BD9615C7F7D10072DF73 /* playerBat.png in Resources */ = {isa = PBXBuildFile; fileRef = A348BD9515C7F7D10072DF73 /* playerBat.png */; };
+		A348BD9815C7FCA40072DF73 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A348BD9715C7FCA40072DF73 /* bg.png */; };
+		A348BD9A15C802900072DF73 /* brick1.png in Resources */ = {isa = PBXBuildFile; fileRef = A348BD9915C802900072DF73 /* brick1.png */; };
+		A348BD9C15C804050072DF73 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A348BD9B15C804050072DF73 /* level1.txt */; };
+		A348BDA215C817AF0072DF73 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A348BDA115C817AF0072DF73 /* Default.png */; };
+		A348BDA415C81C470072DF73 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = A348BDA315C81C470072DF73 /* ball.png */; };
+		A363C0DE15C8F4E200E8C52F /* ball1.png in Resources */ = {isa = PBXBuildFile; fileRef = A363C0DD15C8F4E200E8C52F /* ball1.png */; };
+		A363C0E115C95ECE00E8C52F /* menuDimmer.png in Resources */ = {isa = PBXBuildFile; fileRef = A363C0E015C95ECE00E8C52F /* menuDimmer.png */; };
+		A363C0E315C95FED00E8C52F /* menuStartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A363C0E215C95FED00E8C52F /* menuStartButton.png */; };
+		A363C0E715C9645F00E8C52F /* menuCaption.png in Resources */ = {isa = PBXBuildFile; fileRef = A363C0E415C9645F00E8C52F /* menuCaption.png */; };
+		A363C0E815C9645F00E8C52F /* menuCaptionLose.png in Resources */ = {isa = PBXBuildFile; fileRef = A363C0E515C9645F00E8C52F /* menuCaptionLose.png */; };
+		A363C0E915C9645F00E8C52F /* menuCaptionWon.png in Resources */ = {isa = PBXBuildFile; fileRef = A363C0E615C9645F00E8C52F /* menuCaptionWon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,17 +40,30 @@
 		A348BD6315C7D1190072DF73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A348BD6515C7D1190072DF73 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A348BD6715C7D1190072DF73 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		A348BD6B15C7D1190072DF73 /* SimpleArkanoid-Info.plist */ = {isa = PBXFileReference; path = "SimpleArkanoid-Info.plist"; sourceTree = "<group>"; };
+		A348BD6B15C7D1190072DF73 /* SimpleArkanoid-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleArkanoid-Info.plist"; sourceTree = "<group>"; };
 		A348BD6D15C7D1190072DF73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A348BD6F15C7D1190072DF73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A348BD7115C7D1190072DF73 /* SimpleArkanoid-Prefix.pch */ = {isa = PBXFileReference; path = "SimpleArkanoid-Prefix.pch"; sourceTree = "<group>"; };
-		A348BD7215C7D1190072DF73 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		A348BD7115C7D1190072DF73 /* SimpleArkanoid-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleArkanoid-Prefix.pch"; sourceTree = "<group>"; };
+		A348BD7215C7D1190072DF73 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A348BD7315C7D1190072DF73 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A348BD7515C7D1190072DF73 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		A348BD7715C7D1190072DF73 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		A348BD7915C7D1190072DF73 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		A348BD7915C7D1190072DF73 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A348BD7A15C7D1190072DF73 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A348BD7D15C7D1190072DF73 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		A348BD8415C7D1AE0072DF73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A348BD8615C7E1230072DF73 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
+		A348BD8715C7E1230072DF73 /* GameSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSprite.m; sourceTree = "<group>"; };
+		A348BD9515C7F7D10072DF73 /* playerBat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerBat.png; sourceTree = "<group>"; };
+		A348BD9715C7FCA40072DF73 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		A348BD9915C802900072DF73 /* brick1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick1.png; sourceTree = "<group>"; };
+		A348BD9B15C804050072DF73 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		A348BDA115C817AF0072DF73 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		A348BDA315C81C470072DF73 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		A363C0DD15C8F4E200E8C52F /* ball1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball1.png; sourceTree = "<group>"; };
+		A363C0E015C95ECE00E8C52F /* menuDimmer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuDimmer.png; sourceTree = "<group>"; };
+		A363C0E215C95FED00E8C52F /* menuStartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuStartButton.png; sourceTree = "<group>"; };
+		A363C0E415C9645F00E8C52F /* menuCaption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCaption.png; sourceTree = "<group>"; };
+		A363C0E515C9645F00E8C52F /* menuCaptionLose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCaptionLose.png; sourceTree = "<group>"; };
+		A363C0E615C9645F00E8C52F /* menuCaptionWon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuCaptionWon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A348BD8515C7D1AE0072DF73 /* QuartzCore.framework in Frameworks */,
 				A348BD6015C7D1190072DF73 /* UIKit.framework in Frameworks */,
 				A348BD6215C7D1190072DF73 /* Foundation.framework in Frameworks */,
 				A348BD6415C7D1190072DF73 /* CoreGraphics.framework in Frameworks */,
@@ -60,6 +86,7 @@
 		A348BD5015C7D1190072DF73 = {
 			isa = PBXGroup;
 			children = (
+				A348BD8415C7D1AE0072DF73 /* QuartzCore.framework */,
 				A348BD6915C7D1190072DF73 /* SimpleArkanoid */,
 				A348BD5E15C7D1190072DF73 /* Frameworks */,
 				A348BD5C15C7D1190072DF73 /* Products */,
@@ -89,12 +116,13 @@
 		A348BD6915C7D1190072DF73 /* SimpleArkanoid */ = {
 			isa = PBXGroup;
 			children = (
+				A348BD9215C7F0F20072DF73 /* images */,
 				A348BD7215C7D1190072DF73 /* AppDelegate.h */,
 				A348BD7315C7D1190072DF73 /* AppDelegate.m */,
-				A348BD7515C7D1190072DF73 /* Shader.fsh */,
-				A348BD7715C7D1190072DF73 /* Shader.vsh */,
 				A348BD7915C7D1190072DF73 /* ViewController.h */,
 				A348BD7A15C7D1190072DF73 /* ViewController.m */,
+				A348BD8615C7E1230072DF73 /* GameSprite.h */,
+				A348BD8715C7E1230072DF73 /* GameSprite.m */,
 				A348BD7C15C7D1190072DF73 /* ViewController.xib */,
 				A348BD6A15C7D1190072DF73 /* Supporting Files */,
 			);
@@ -104,12 +132,31 @@
 		A348BD6A15C7D1190072DF73 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A348BD9B15C804050072DF73 /* level1.txt */,
 				A348BD6B15C7D1190072DF73 /* SimpleArkanoid-Info.plist */,
 				A348BD6C15C7D1190072DF73 /* InfoPlist.strings */,
 				A348BD6F15C7D1190072DF73 /* main.m */,
 				A348BD7115C7D1190072DF73 /* SimpleArkanoid-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A348BD9215C7F0F20072DF73 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A363C0E015C95ECE00E8C52F /* menuDimmer.png */,
+				A363C0E215C95FED00E8C52F /* menuStartButton.png */,
+				A363C0E415C9645F00E8C52F /* menuCaption.png */,
+				A363C0E515C9645F00E8C52F /* menuCaptionLose.png */,
+				A363C0E615C9645F00E8C52F /* menuCaptionWon.png */,
+				A363C0DD15C8F4E200E8C52F /* ball1.png */,
+				A348BDA115C817AF0072DF73 /* Default.png */,
+				A348BD9915C802900072DF73 /* brick1.png */,
+				A348BD9715C7FCA40072DF73 /* bg.png */,
+				A348BDA315C81C470072DF73 /* ball.png */,
+				A348BD9515C7F7D10072DF73 /* playerBat.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,9 +210,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A348BD6E15C7D1190072DF73 /* InfoPlist.strings in Resources */,
-				A348BD7615C7D1190072DF73 /* Shader.fsh in Resources */,
-				A348BD7815C7D1190072DF73 /* Shader.vsh in Resources */,
 				A348BD7E15C7D1190072DF73 /* ViewController.xib in Resources */,
+				A348BD9615C7F7D10072DF73 /* playerBat.png in Resources */,
+				A348BD9815C7FCA40072DF73 /* bg.png in Resources */,
+				A348BD9A15C802900072DF73 /* brick1.png in Resources */,
+				A348BD9C15C804050072DF73 /* level1.txt in Resources */,
+				A348BDA215C817AF0072DF73 /* Default.png in Resources */,
+				A348BDA415C81C470072DF73 /* ball.png in Resources */,
+				A363C0DE15C8F4E200E8C52F /* ball1.png in Resources */,
+				A363C0E115C95ECE00E8C52F /* menuDimmer.png in Resources */,
+				A363C0E315C95FED00E8C52F /* menuStartButton.png in Resources */,
+				A363C0E715C9645F00E8C52F /* menuCaption.png in Resources */,
+				A363C0E815C9645F00E8C52F /* menuCaptionLose.png in Resources */,
+				A363C0E915C9645F00E8C52F /* menuCaptionWon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +236,7 @@
 				A348BD7015C7D1190072DF73 /* main.m in Sources */,
 				A348BD7415C7D1190072DF73 /* AppDelegate.m in Sources */,
 				A348BD7B15C7D1190072DF73 /* ViewController.m in Sources */,
+				A348BD8815C7E1230072DF73 /* GameSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +350,7 @@
 				A348BD8315C7D1190072DF73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
