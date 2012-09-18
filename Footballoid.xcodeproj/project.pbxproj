@@ -90,7 +90,7 @@
 			children = (
 				C59DA5DD160885C90089349C /* footballoid_icon.png */,
 				A348BD8415C7D1AE0072DF73 /* QuartzCore.framework */,
-				A348BD6915C7D1190072DF73 /* SimpleArkanoid */,
+				A348BD6915C7D1190072DF73 /* Footballoid */,
 				A348BD5E15C7D1190072DF73 /* Frameworks */,
 				A348BD5C15C7D1190072DF73 /* Products */,
 			);
@@ -116,7 +116,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A348BD6915C7D1190072DF73 /* SimpleArkanoid */ = {
+		A348BD6915C7D1190072DF73 /* Footballoid */ = {
 			isa = PBXGroup;
 			children = (
 				A348BD9215C7F0F20072DF73 /* images */,
@@ -129,6 +129,7 @@
 				A348BD7C15C7D1190072DF73 /* ViewController.xib */,
 				A348BD6A15C7D1190072DF73 /* Supporting Files */,
 			);
+			name = Footballoid;
 			path = SimpleArkanoid;
 			sourceTree = "<group>";
 		};
