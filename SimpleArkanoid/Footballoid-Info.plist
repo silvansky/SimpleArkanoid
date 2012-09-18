@@ -15,6 +15,7 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>Default.png</string>
+				<string>footballoid_icon.png</string>
 			</array>
 		</dict>
 	</dict>
